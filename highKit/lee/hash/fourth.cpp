@@ -6,7 +6,9 @@
 using namespace std;
 
 bool first_compare(pair<string,pair<int,int>>a, pair<string,pair<int,int>>b){
+
         return a.second.first > b.second.first;
+
 }
 
 bool second_compare(pair<string,int> a, pair<string,int> b){
