@@ -13,7 +13,7 @@ int solution(vector<int> scoville, int K) {
     }
     while(true){
         if(pq.size()>1 && pq.top() < K){
-           int tmp = pq.top();
+            int tmp = pq.top();
             pq.pop();
             int second = pq.top();
             pq.pop();
