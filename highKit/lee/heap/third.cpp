@@ -6,9 +6,10 @@ using namespace std;
 vector<int> solution(vector<string> operations) {
         vector <int> answer(2);
         int result_number = 0;
-        priority_queue <int, vector <int>, greater<int>> q1; //오름
-        priority_queue <int, vector<int>> q2;  //내림
-        for(string s : operations){
+        priority_queue <int, vector <int>, greater<int>> q1; //오름차순 큐
+        priority_queue <int, vector<int>> q2;  //내림차순 큐
+        for(int i=0;i<operations.size();i++){
+            string s = operations[i];
             if(result_number==0) { 
                 while(!q1.empty()) q1.pop(); 
                 while(!q2.empty()) q2.pop(); 
