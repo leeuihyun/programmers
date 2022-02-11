@@ -4,36 +4,28 @@
 
 using namespace std;
 
-int solution(vector<int> priorities, int location) {
-    int answer = 1, max = 0;
+int solution(int bridge_length, int weight, vector<int> truck_weights) {
+    int answer = 1, cnt = 1, sum = 0, idx = 0;
     
     queue<pair<int, int>> q;
     
-    for(int i = 0; i < priorities.size(); i++) {
-        q.push({priorities[i], i});
-        if(max < priorities[i])
-            max = priorities[i];
+    q.push({truck_weights[idx++], cnt++});
+    sum += q.front().first;
+    while(!q.empty()) {
+        if(cnt == q.front().second + bridge_length) {
+            sum -= q.front().first;
+            printf("pop : %d %d %d\n", q.front().first, q.front().second, cnt);
+            q.pop();
+        }
+        if(sum + truck_weights[idx] <= weight && idx < truck_weights.size()) {
+            sum += truck_weights[idx];
+            printf("push : %d %d %d\n", sum, truck_weights[idx], cnt);
+            q.push({truck_weights[idx++], cnt});
+        }
+        cnt ++;
     }
     
-    while(!q.empty()) {
-        int p = q.front().first;
-        int idx = q.front().second;
-        q.pop();
-        
-        if(p == max) {
-            if(idx == location) break;
-            max = 0;
-            queue<pair<int, int>> tmp = q;
-            while(!tmp.empty()) {
-                if(tmp.front().first > max)
-                    max = tmp.front().first;
-                tmp.pop();
-            }
-            answer++;
-        }
-        else
-            q.push({p, idx});
-    }
+    answer = cnt - 1;
     
     return answer;
 }
