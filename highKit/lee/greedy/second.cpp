@@ -3,6 +3,7 @@
 
 using namespace std;
 
+
 int solution(string name)
 {
     int answer = 0;
@@ -24,4 +25,5 @@ int solution(string name)
     }
 
     return answer + move;
+
 }
